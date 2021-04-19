@@ -25,7 +25,7 @@ public class Item {
     private String category;
     private Long barcode;
     private String colors;
-    private char size;
+    private String size;
     private String description; // Eksempel: Slimfit, 32inch waist - stor i størrelsen.
     private String filePath;
 
@@ -46,7 +46,7 @@ public class Item {
                 String category,
                 Long barcode,
                 String colors,
-                char size,
+                String size,
                 String description,
                 String filePath) {
         this.name = name;
@@ -107,11 +107,11 @@ public class Item {
         this.colors = colors;
     }
 
-    public char getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(char size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
