@@ -23,18 +23,18 @@ public class ItemConfig {
                     999,
                     "Pants"
             );
-           /* Item test = new Item(
+            Item test = new Item(
                     "Test",
                     300,
                     "test",
                     3L,
                     "red",
-                    'M',
+                    "M",
                     "testDescription",
                     "C:/Mathias/test"
-            );*/
+            );
 
-            itemRepository.saveAll(List.of(tshirt,pants));
+            itemRepository.saveAll(List.of(tshirt,pants, test));
         };
     }
 }

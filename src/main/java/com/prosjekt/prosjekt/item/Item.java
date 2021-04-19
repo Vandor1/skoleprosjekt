@@ -28,6 +28,7 @@ public class Item {
     private String size;
     private String description; // Eksempel: Slimfit, 32inch waist - stor i størrelsen.
     private String filePath;
+    private Integer counter = 1;
 
     public Item() {
     }
@@ -129,6 +130,18 @@ public class Item {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public void increaseCounter(){
+        this.counter++;
+    }
+
+    public void decreaseCounter(){
+        this.counter--;
+    }
+
+    public int getCounter(){
+        return this.counter;
     }
 
     @Override
