@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -39,7 +41,6 @@ public class ItemService {
        itemRepository.deleteById(itemId);
     }
 
-
     @Transactional
     public void updateItem(Long itemId, int price) {
         Item item = itemRepository.findById(itemId)
@@ -48,5 +49,9 @@ public class ItemService {
         if (price != 0 && !Objects.equals(item.getPrice(), price)){
             item.setPrice(price);
         }
+    }
+
+    public Path findImage(String filepath){
+        return Paths.get(filepath);
     }
 }

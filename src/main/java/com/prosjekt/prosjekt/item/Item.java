@@ -1,10 +1,9 @@
 package com.prosjekt.prosjekt.item;
 
-import java.time.LocalDate;
 import javax.persistence.*;
 
 /**
- * A class representing an item with the parameters needed for classifying the item.
+ * A class representing an item ...
  */
 @Entity
 @Table
@@ -17,52 +16,47 @@ public class Item {
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator ="items_sequence"
+            generator ="item_sequence"
     )
+
     private Long id;
     private String name;
     private Integer price;
-    private LocalDate createDate;
     private String category;
-/*    private Long barcode;
+    private Long barcode;
     private String colors;
     private char size;
-    private Image image; */
+    private String description; // Eksempel: Slimfit, 32inch waist - stor i størrelsen.
+    private String filePath;
 
     public Item() {
     }
 
-    public Item(Long id,
-                String name,
-                Integer price,
-                LocalDate createDate,
-                String category) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.createDate = createDate;
-        this.category = category;
-    }
-
     public Item(String name,
                 Integer price,
-                LocalDate createDate,
                 String category) {
         this.name = name;
         this.price = price;
-        this.createDate = createDate;
         this.category = category;
     }
 
-    @Override
-    public String toString() {
-        return "item{" +
-               "id=" + id +
-               ", name='" + name + '\'' +
-               ", price=" + price +
-               ", createDate=" + createDate +
-               ", category='" + category + '\'' +
-               '}';
+    public Item(
+                String name,
+                Integer price,
+                String category,
+                Long barcode,
+                String colors,
+                char size,
+                String description,
+                String filePath) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.barcode = barcode;
+        this.colors = colors;
+        this.size = size;
+        this.description = description;
+        this.filePath = filePath;
     }
 
     public Long getId() {
@@ -89,19 +83,66 @@ public class Item {
         this.price = price;
     }
 
-    public LocalDate getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
-    }
-
     public String getCategory() {
         return category;
     }
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Long getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(Long barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getColors() {
+        return colors;
+    }
+
+    public void setColors(String colors) {
+        this.colors = colors;
+    }
+
+    public char getSize() {
+        return size;
+    }
+
+    public void setSize(char size) {
+        this.size = size;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+               "id=" + id +
+               ", name='" + name + '\'' +
+               ", price=" + price +
+               ", category='" + category + '\'' +
+               ", barcode=" + barcode +
+               ", colors='" + colors + '\'' +
+               ", size=" + size +
+               ", description='" + description + '\'' +
+               ", filePath='" + filePath + '\'' +
+               '}';
     }
 }
