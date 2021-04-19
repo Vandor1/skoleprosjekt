@@ -24,6 +24,10 @@ public class Item {
     private Integer price;
     private LocalDate createDate;
     private String category;
+/*    private Long barcode;
+    private String colors;
+    private char size;
+    private Image image; */
 
     public Item() {
     }
