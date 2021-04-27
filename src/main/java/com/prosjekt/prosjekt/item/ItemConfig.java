@@ -12,29 +12,34 @@ public class ItemConfig {
     @Bean
     CommandLineRunner commandLineRunner(ItemRepository itemRepository){
         return args -> {
-            Item tshirt = new Item(
-                    "les deux",
-                    599,
-                    "T-shirt"
-            );
-
-            Item pants = new Item(
-                    "les deux",
-                    999,
-                    "Pants"
-            );
             Item test = new Item(
-                    "Test",
-                    300,
-                    "test",
-                    "Pokemonkort",
-                    "red",
+                    "Levi's jeans",
+                    "undertittlel",
+                    1200,
+                    "bottomwear",
+                    "jeans",
+                    "blue",
                     "M",
-                    "testDescription",
-                    "C:/Mathias/test"
+                    "slim fit",
+                    "https://i.imgur.com/PqfGMhn.png",
+                    3
+
+            );
+            Item test2 = new Item(
+                    "Nike ultimate running",
+                    "made for running",
+                    1700,
+                    "shoes",
+                    "running",
+                    "black",
+                    "s",
+                    "200g",
+                    "https://i.imgur.com/PwoTdIy.jpg",
+                    5
+
             );
 
-            itemRepository.saveAll(List.of(tshirt,pants, test));
+            itemRepository.saveAll(List.of(test, test2));
         };
     }
 }
