@@ -14,4 +14,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Query("SELECT s from Item s WHERE s.name = ?1")
     Optional<Item> findItemByName(String name);
+    Optional<Item> findItemById(Long id);
 }

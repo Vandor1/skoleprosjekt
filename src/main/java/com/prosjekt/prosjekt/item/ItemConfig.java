@@ -9,7 +9,7 @@ import java.util.List;
 @Configuration
 public class ItemConfig {
 
-    @Bean
+    @Bean(name = "initItems")
     CommandLineRunner commandLineRunner(ItemRepository itemRepository){
         return args -> {
             Item test = new Item(

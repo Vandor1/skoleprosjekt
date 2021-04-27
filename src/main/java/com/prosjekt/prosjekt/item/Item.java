@@ -1,6 +1,9 @@
 package com.prosjekt.prosjekt.item;
 
+import com.prosjekt.prosjekt.appuser.AppUser;
+
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * A class representing an item ...
@@ -18,7 +21,6 @@ public class Item {
             strategy = GenerationType.SEQUENCE,
             generator ="item_sequence"
     )
-
     private Long id;
     private String name;
     private String description; // Eksempel: Slimfit, 32inch waist - stor i størrelsen.
@@ -30,6 +32,9 @@ public class Item {
     private String details;
     private String img;
     private Integer counter = 1;
+
+//    @ManyToMany(mappedBy = )
+//    private Set<AppUser> asdf;
 
     public Item() {
     }

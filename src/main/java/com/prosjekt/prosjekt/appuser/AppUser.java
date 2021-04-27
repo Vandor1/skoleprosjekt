@@ -1,4 +1,5 @@
 package com.prosjekt.prosjekt.appuser;
+import com.prosjekt.prosjekt.item.Item;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,6 +31,8 @@ public class AppUser implements UserDetails {
             strategy = GenerationType.SEQUENCE,
             generator = "item_sequence"
     )
+
+
     private Long id;
     private String name;
     private String email;
@@ -36,6 +41,10 @@ public class AppUser implements UserDetails {
     private AppUserRole appUserRole;
     private Boolean locked=false;
     private Boolean enabled=true;
+    @JoinTable(name = "cart")
+    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
+    @JoinColumn
+    private List<Item> items;
 
     public AppUser(String name,
                    String email,
@@ -53,6 +62,10 @@ public class AppUser implements UserDetails {
         SimpleGrantedAuthority authority =
                 new SimpleGrantedAuthority(appUserRole.name());
         return Collections.singletonList(authority);
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 
     @Override
