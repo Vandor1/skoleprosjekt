@@ -24,6 +24,7 @@ public class Item {
     private String description; // Eksempel: Slimfit, 32inch waist - stor i størrelsen.
     private Integer price;
     private String category;
+    private String subcategory;
     private String colors;
     private String size;
     private String details;
@@ -41,23 +42,26 @@ public class Item {
         this.category = category;
     }
 
-    public Item(
-                String name,
+    public Item(String name,
+                String description,
                 Integer price,
                 String category,
-                String details,
+                String subcategory,
                 String colors,
                 String size,
-                String description,
-                String filePath) {
+                String details,
+                String img,
+                Integer counter) {
         this.name = name;
+        this.description = description;
         this.price = price;
         this.category = category;
-        this.details = details;
+        this.subcategory = subcategory;
         this.colors = colors;
         this.size = size;
-        this.description = description;
-        this.img = filePath;
+        this.details = details;
+        this.img = img;
+        this.counter = counter;
     }
 
     public Long getId() {
@@ -147,15 +151,17 @@ public class Item {
     @Override
     public String toString() {
         return "Item{" +
-               "id=" + id +
-               ", name='" + name + '\'' +
-               ", price=" + price +
-               ", category='" + category + '\'' +
-               ", details=" + details +
-               ", colors='" + colors + '\'' +
-               ", size=" + size +
-               ", description='" + description + '\'' +
-               ", filePath='" + img + '\'' +
-               '}';
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                ", subcategory='" + subcategory + '\'' +
+                ", colors='" + colors + '\'' +
+                ", size='" + size + '\'' +
+                ", details='" + details + '\'' +
+                ", img='" + img + '\'' +
+                ", counter=" + counter +
+                '}';
     }
 }
