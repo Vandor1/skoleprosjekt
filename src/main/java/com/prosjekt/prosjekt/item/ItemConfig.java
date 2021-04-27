@@ -27,7 +27,7 @@ public class ItemConfig {
                     "Test",
                     300,
                     "test",
-                    3L,
+                    "Pokemonkort",
                     "red",
                     "M",
                     "testDescription",

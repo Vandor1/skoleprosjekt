@@ -21,13 +21,13 @@ public class Item {
 
     private Long id;
     private String name;
+    private String description; // Eksempel: Slimfit, 32inch waist - stor i størrelsen.
     private Integer price;
     private String category;
-    private Long barcode;
     private String colors;
     private String size;
-    private String description; // Eksempel: Slimfit, 32inch waist - stor i størrelsen.
-    private String filePath;
+    private String details;
+    private String img;
     private Integer counter = 1;
 
     public Item() {
@@ -45,7 +45,7 @@ public class Item {
                 String name,
                 Integer price,
                 String category,
-                Long barcode,
+                String details,
                 String colors,
                 String size,
                 String description,
@@ -53,11 +53,11 @@ public class Item {
         this.name = name;
         this.price = price;
         this.category = category;
-        this.barcode = barcode;
+        this.details = details;
         this.colors = colors;
         this.size = size;
         this.description = description;
-        this.filePath = filePath;
+        this.img = filePath;
     }
 
     public Long getId() {
@@ -92,12 +92,12 @@ public class Item {
         this.category = category;
     }
 
-    public Long getBarcode() {
-        return barcode;
+    public String getDetails() {
+        return details;
     }
 
-    public void setBarcode(Long barcode) {
-        this.barcode = barcode;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public String getColors() {
@@ -124,12 +124,12 @@ public class Item {
         this.description = description;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getImg() {
+        return img;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setImg(String filePath) {
+        this.img = filePath;
     }
 
     public void increaseCounter(){
@@ -151,11 +151,11 @@ public class Item {
                ", name='" + name + '\'' +
                ", price=" + price +
                ", category='" + category + '\'' +
-               ", barcode=" + barcode +
+               ", details=" + details +
                ", colors='" + colors + '\'' +
                ", size=" + size +
                ", description='" + description + '\'' +
-               ", filePath='" + filePath + '\'' +
+               ", filePath='" + img + '\'' +
                '}';
     }
 }
