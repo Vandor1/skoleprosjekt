@@ -23,6 +23,6 @@ class AppUserTest {
                 "https://i.imgur.com/PwoTdIy.jpg",
                 5
         ));
-        assertFalse(user.getItems().isEmpty());
+        assertFalse(user.getCartItems().isEmpty());
     }
 }

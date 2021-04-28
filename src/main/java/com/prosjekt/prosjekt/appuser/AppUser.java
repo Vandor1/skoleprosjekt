@@ -10,24 +10,22 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class AppUser implements UserDetails {
     @SequenceGenerator(
-            name = "item_sequence",
-            sequenceName = "item_sequence",
+            name = "user_sequence",
+            sequenceName = "user_sequence",
             allocationSize = 1
     )
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "item_sequence"
+            generator = "user_sequence"
     )
 
     private Long id;
@@ -42,16 +40,35 @@ public class AppUser implements UserDetails {
     @JoinTable(name = "cart")
     @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
     @JoinColumn
-    private List<Item> items;
+    private List<Item> cartItems;
+
+    @JoinTable(name = "orders")
+    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
+    @JoinColumn
+    private List<Item> orderItems;
 
     public AppUser(String name,
                    String email,
                    String password,
-                   AppUserRole appUserRole) {
+                   AppUserRole appUserRole){
         this.name = name;
         this.email = email;
         this.password = password;
         this.appUserRole = appUserRole;
+    }
+
+    public AppUser(String name,
+                   String email,
+                   String password,
+                   AppUserRole appUserRole,
+                   List<Item> cartItems,
+                   List<Item> orderItems) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.appUserRole = appUserRole;
+        this.cartItems = cartItems;
+        this.orderItems = orderItems;
     }
 
     @Override
@@ -62,12 +79,17 @@ public class AppUser implements UserDetails {
         return Collections.singletonList(authority);
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<Item> getCartItems() {
+        return cartItems;
+    }
+
+    public void addOrder(List<Item> cartItems){
+        this.orderItems.addAll(cartItems);
+        cartItems.clear();
     }
 
     public void addItem(Item item){
-        this.items.add(item);
+        this.cartItems.add(item);
     }
     @Override
     public String getPassword() {

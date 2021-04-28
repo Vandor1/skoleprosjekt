@@ -22,11 +22,16 @@ public class UserController {
         appUserService.addToCart(userId, itemId);
     }
 
+
+    @PutMapping(path = "/checkout/{user_id}")
+    public void checkOut(@PathVariable("user_id") Long userId){
+        appUserService.checkOut(userId);
+    }
+
     @PostMapping(value = "signUpUser")
     public void signUpUser(@RequestBody AppUser user){
         appUserService.signUpUser(user);
     }
-
 
     @GetMapping
     public List<AppUser> getItems(){

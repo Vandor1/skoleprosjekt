@@ -1,20 +1,15 @@
 package com.prosjekt.prosjekt.appuser;
 
-import com.fasterxml.jackson.annotation.OptBoolean;
 import com.prosjekt.prosjekt.item.Item;
 import com.prosjekt.prosjekt.item.ItemRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,9 +55,17 @@ public class AppUserService implements UserDetailsService {
         if(user.isPresent() && item.isPresent()) {
             user.get().addItem(item.get());
 
-            System.out.println(user.get().getItems());
+            System.out.println(user.get().getCartItems());
             System.out.println(item.get().getName());
         }
     }
 
+    public void checkOut(Long userId) {
+        Optional<AppUser> user = userRepository.findAppUserById(userId);
+        if (user.isEmpty()){
+            throw new IllegalStateException("user id not found");
+        }
+
+        user.get().addOrder(user.get().getCartItems());
+    }
 }
