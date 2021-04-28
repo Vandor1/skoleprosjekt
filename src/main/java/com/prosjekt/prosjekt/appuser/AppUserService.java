@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -47,7 +48,13 @@ public class AppUserService implements UserDetailsService {
         return "works now :D";
     }
 
-    @Transactional
+    public List<AppUser> getUsers()
+    {
+        return userRepository.findAll();
+    }
+
+
+
     public void addToCart(Long itemId, Long userId){
         Optional<AppUser> user = userRepository.findAppUserById(userId);
         Optional<Item> item = itemRepository.findItemById(itemId);

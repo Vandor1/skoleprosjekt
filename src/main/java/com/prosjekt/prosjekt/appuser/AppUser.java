@@ -41,6 +41,7 @@ public class AppUser implements UserDetails {
     private AppUserRole appUserRole;
     private Boolean locked=false;
     private Boolean enabled=true;
+
     @JoinTable(name = "cart")
     @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
     @JoinColumn
