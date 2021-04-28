@@ -17,15 +17,13 @@ public class UserController {
         this.appUserService = appUserService;
     }
 
-    @PostMapping(path = "{userId}{itemId}")
-    public void addToCart(
-            @PathVariable("userId") Long userId,
-            @RequestParam(required = false) Long userId1,
-            @PathVariable("itemId") Long itemId,
-            @RequestParam(required = false) Long itemId1)
+    @PostMapping()
+    public void addToCart(@RequestBody Long userId,
+                          @RequestBody Long itemId)
     {
         appUserService.addToCart(itemId, userId);
     }
+
 
     @GetMapping
     public List<AppUser> getItems(){
