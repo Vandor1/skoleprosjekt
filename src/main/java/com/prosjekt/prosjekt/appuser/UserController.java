@@ -16,7 +16,7 @@ public class UserController {
         this.appUserService = appUserService;
     }
 
-    @PutMapping(path = "{user_id}/{item_id}")
+    @PutMapping(value = "addToCart/{user_id}/{item_id}")
     public void addToCart(@PathVariable("user_id") Long userId,
                         @PathVariable("item_id") Long itemId){
         appUserService.addToCart(userId, itemId);

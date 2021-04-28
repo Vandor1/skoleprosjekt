@@ -57,6 +57,7 @@ public class AppUserService implements UserDetailsService {
 
             System.out.println(user.get().getCartItems());
             System.out.println(item.get().getName());
+            userRepository.save(user.get());
         }
     }
 
@@ -67,5 +68,6 @@ public class AppUserService implements UserDetailsService {
         }
 
         user.get().addOrder(user.get().getCartItems());
+        userRepository.save(user.get());
     }
 }

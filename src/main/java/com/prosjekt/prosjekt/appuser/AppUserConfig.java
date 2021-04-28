@@ -43,10 +43,10 @@ public class AppUserConfig {
 
     public AppUserConfig(){
         testItems = new ArrayList<>();
-        testItems.add(test);
+//        testItems.add(test);
 //        testItems.add(test2);
         testItems2 = new ArrayList<>();
-        testItems2.add(test2);
+//        testItems2.add(test2);
 //        testItems2.add(test);
 
         orderItems1 = new ArrayList<>();
@@ -70,13 +70,10 @@ public class AppUserConfig {
                     "a",
                     "b",
                     "c",
-                    AppUserRole.USER,
-                    this.testItems2,
-                    this.orderItems2);
+                    AppUserRole.USER);
 
             appUserService.signUpUser(user1);
             appUserService.signUpUser(user2);
-
         };
     }
 }

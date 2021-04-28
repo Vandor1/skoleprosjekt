@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -55,6 +56,8 @@ public class AppUser implements UserDetails {
         this.email = email;
         this.password = password;
         this.appUserRole = appUserRole;
+        this.cartItems = new ArrayList<>();
+        this.orderItems = new ArrayList<>();
     }
 
     public AppUser(String name,
