@@ -74,10 +74,6 @@ public class AppUser implements UserDetails {
         return password;
     }
 
-    public void addItem(Item item){
-        items.add(item);
-    }
-
     @Override
     public String getUsername() {
         return email;
