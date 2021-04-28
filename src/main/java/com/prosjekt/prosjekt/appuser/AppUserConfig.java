@@ -7,15 +7,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppUserConfig {
     @Bean(name = "initUsers")
-    CommandLineRunner commandLineRunner(UserRepository userRepository){
+    CommandLineRunner commandLineRunner(AppUserService appUserService){
         return args -> {
             AppUser user = new AppUser(
                     "mathias",
-                    "gmail",
-                    "jegErHomo",
+                    "1",
+                    "1",
                     AppUserRole.USER
             );
-            userRepository.save(user);
+            appUserService.signUpUser(user);
         };
     }
 }
