@@ -1,5 +1,6 @@
 package com.prosjekt.prosjekt.security.config;
 
+import com.prosjekt.prosjekt.appuser.AppUserRole;
 import com.prosjekt.prosjekt.appuser.AppUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -21,8 +22,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().disable();
-        http.csrf().disable().formLogin().disable();
+
+           http
+               .csrf().disable()
+               .authorizeRequests()
+               .antMatchers("api/v1/registration").permitAll()
+               .antMatchers("/api/v1/item/**").hasAnyRole("USER","ADMIN", "ROLE_USER")
+               .anyRequest().permitAll()
+                .and()
+               .formLogin().failureUrl("/login-error");
+
+                /*.exceptionHandling().accessDeniedPage("/403");*/
+
+
     }
 
     @Override
@@ -31,10 +43,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(bCryptPasswordEncoder);
         provider.setUserDetailsService(appUserService);
+
         return provider;
     }
 }

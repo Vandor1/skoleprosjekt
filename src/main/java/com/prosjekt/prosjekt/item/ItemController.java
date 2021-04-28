@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @CrossOrigin
+@RestController
 @RequestMapping(path="api/v1/item")
 public class ItemController {
 
@@ -24,6 +24,11 @@ public class ItemController {
     @GetMapping
     public List<Item> getItems(){
         return itemService.getItems();
+    }
+
+    @GetMapping(path="{itemId}")
+    public Item getItem(@PathVariable("itemId") Long id){
+        return itemService.getItem(id);
     }
 
     @PostMapping

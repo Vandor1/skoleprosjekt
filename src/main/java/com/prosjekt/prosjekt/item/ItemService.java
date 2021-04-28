@@ -24,6 +24,14 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
+    public Item getItem(Long id){
+        Optional<Item> foundItem = itemRepository.findItemById(id);
+        if(foundItem.isEmpty()){
+            throw new IllegalStateException("Item already exists");
+        }
+        return foundItem.get();
+    }
+
     public void addNewItem(Item item) {
        Optional<Item> itemByName = itemRepository.findItemByName(item.getName());
        if(itemByName.isPresent()){

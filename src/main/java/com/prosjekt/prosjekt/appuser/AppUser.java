@@ -30,7 +30,6 @@ public class AppUser implements UserDetails {
             generator = "item_sequence"
     )
 
-
     private Long id;
     private String name;
     private String email;
@@ -75,10 +74,16 @@ public class AppUser implements UserDetails {
         return password;
     }
 
+    public void addItem(Item item){
+        items.add(item);
+    }
+
     @Override
     public String getUsername() {
         return email;
     }
+
+    public String getName(){return name;}
 
     @Override
     public boolean isAccountNonExpired() {

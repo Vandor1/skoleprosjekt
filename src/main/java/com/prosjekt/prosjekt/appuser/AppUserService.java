@@ -25,7 +25,7 @@ public class AppUserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final ItemRepository itemRepository;
-    private final static String loginerror= "user name in use";
+    private final static String LOGIN_ERROR = "user name in use";
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
@@ -34,7 +34,7 @@ public class AppUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
-        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(loginerror));
+        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(LOGIN_ERROR));
     }
 
     public String signUpUser(AppUser appUser){
@@ -48,8 +48,7 @@ public class AppUserService implements UserDetailsService {
         return "works now :D";
     }
 
-    public List<AppUser> getUsers()
-    {
+    public List<AppUser> getUsers() {
         return userRepository.findAll();
     }
 
@@ -65,4 +64,5 @@ public class AppUserService implements UserDetailsService {
             System.out.println(item.get().getName());
         }
     }
+
 }
