@@ -55,12 +55,14 @@ public class AppUserService implements UserDetailsService {
 
 
 
-    public void addToCart(Long itemId, Long userId){
+    public void addToCart(Long userId, Long itemId){
         Optional<AppUser> user = userRepository.findAppUserById(userId);
         Optional<Item> item = itemRepository.findItemById(itemId);
         if(user.isPresent() && item.isPresent()) {
-            user.get().getItems().add(item.get());
+            user.get().addItem(item.get());
+
+            System.out.println(user.get().getItems());
+            System.out.println(item.get().getName());
         }
     }
-
 }

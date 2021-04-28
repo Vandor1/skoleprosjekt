@@ -17,11 +17,15 @@ public class UserController {
         this.appUserService = appUserService;
     }
 
-    @PostMapping()
-    public void addToCart(@RequestBody Long userId,
-                          @RequestBody Long itemId)
-    {
-        appUserService.addToCart(itemId, userId);
+    @PutMapping(path = "{user_id}/{item_id}")
+    public void addToCart(@PathVariable("user_id") Long userId,
+                        @PathVariable("item_id") Long itemId){
+        appUserService.addToCart(userId, itemId);
+    }
+
+    @PostMapping(value = "signUpUser")
+    public void signUpUser(@RequestBody AppUser user){
+        appUserService.signUpUser(user);
     }
 
 
@@ -29,6 +33,7 @@ public class UserController {
     public List<AppUser> getItems(){
         return appUserService.getUsers();
     }
+
 
 
 }

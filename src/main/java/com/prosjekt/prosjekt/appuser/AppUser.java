@@ -1,9 +1,6 @@
 package com.prosjekt.prosjekt.appuser;
 import com.prosjekt.prosjekt.item.Item;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,6 +16,7 @@ import java.util.Set;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class AppUser implements UserDetails {
     @SequenceGenerator(
@@ -69,6 +67,9 @@ public class AppUser implements UserDetails {
         return items;
     }
 
+    public void addItem(Item item){
+        this.items.add(item);
+    }
     @Override
     public String getPassword() {
         return password;
