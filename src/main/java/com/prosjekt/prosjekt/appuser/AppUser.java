@@ -39,12 +39,12 @@ public class AppUser implements UserDetails {
     private Boolean enabled=true;
 
     @JoinTable(name = "cart")
-    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
     @JoinColumn
     private List<Item> cartItems;
 
     @JoinTable(name = "orders")
-    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
     @JoinColumn
     private List<Item> orderItems;
 
@@ -91,7 +91,7 @@ public class AppUser implements UserDetails {
         cartItems.clear();
     }
 
-    public void addItem(Item item){
+    public void addItemToCart(Item item){
         this.cartItems.add(item);
     }
     @Override

@@ -11,7 +11,7 @@ class AppUserTest {
     @Test
     void addItem() {
         AppUser user = new AppUser();
-        user.addItem(new Item(
+        user.addItemToCart(new Item(
                 "Nike ultimate running",
                 "made for running",
                 1700,
