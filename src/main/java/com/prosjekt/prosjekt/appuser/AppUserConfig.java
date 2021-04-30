@@ -27,7 +27,6 @@ public class AppUserConfig {
             "https://i.imgur.com/PqfGMhn.png",
             3);
 
-
     List<Item> testItems2;
     Item test2 = new Item(
             "gggggg",
