@@ -24,13 +24,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
            http
-               .csrf().disable()
-               .authorizeRequests()
-               .antMatchers("api/v1/registration").permitAll()
-               .antMatchers("/api/v1/item/**").hasAnyAuthority("USER", "ADMIN")
-               .anyRequest().permitAll()
-                .and()
-               .formLogin().failureUrl("/login-error");
+               .csrf().disable();
+//               .authorizeRequests()
+//               .antMatchers("api/v1/registration").permitAll()
+//               .antMatchers("/api/v1/item/**").hasAnyAuthority("USER", "ADMIN")
+//               .anyRequest().permitAll()
+//                .and()
+//               .formLogin().failureUrl("/login-error");
 
                 /*.exceptionHandling().accessDeniedPage("/403");*/
 

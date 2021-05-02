@@ -3,7 +3,6 @@ package com.prosjekt.prosjekt.item;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.util.List;
 
 @Configuration
@@ -36,10 +35,21 @@ public class ItemConfig {
                     "200g",
                     "https://i.imgur.com/PwoTdIy.jpg",
                     5
-
+            );
+            Item test3 = new Item(
+                    "GAP sweater",
+                    "Comfy cotton top",
+                    600,
+                    "topwear",
+                    "sweater",
+                    "gray",
+                    "L",
+                    "normal fit",
+                    "https://down.imgspng.com/download/0720/sweater_PNG50.png",
+                    5
             );
 
-            itemRepository.saveAll(List.of(test, test2));
+            itemRepository.saveAll(List.of(test, test2, test3));
         };
     }
 }
