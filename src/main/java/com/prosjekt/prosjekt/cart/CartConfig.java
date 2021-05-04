@@ -13,9 +13,11 @@ public class CartConfig {
     CommandLineRunner commandLineRunner(CartRepository cartRepository){
         return args -> {
             Cart cartItem1 = new Cart(1L,1L);
-//            Cart cartItem2 = new Cart(1L, 2L);
+            Cart cartItem2 = new Cart(1L, 2L);
+            Cart cartItem3 = new Cart(1L, 3L);
 
-            cartRepository.saveAll(List.of(cartItem1));
+
+            cartRepository.saveAll(List.of(cartItem1, cartItem2, cartItem3));
         };
     }
 }
