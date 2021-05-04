@@ -22,7 +22,6 @@ public class ItemConfig {
                     "slim fit",
                     "https://i.imgur.com/PqfGMhn.png",
                     3
-
             );
             Item test2 = new Item(
                     "Nike ultimate running",
@@ -42,7 +41,7 @@ public class ItemConfig {
                     600,
                     "topwear",
                     "sweater",
-                    "gray",
+                    "gray, blue",
                     "L",
                     "normal fit",
                     "https://down.imgspng.com/download/0720/sweater_PNG50.png",

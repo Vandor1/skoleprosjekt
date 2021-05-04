@@ -16,17 +16,17 @@ public class UserController {
         this.appUserService = appUserService;
     }
 
-    @PutMapping(value = "addToCart/{user_id}/{item_id}")
-    public void addToCart(@PathVariable("user_id") Long userId,
-                        @PathVariable("item_id") Long itemId){
-        appUserService.addToCart(userId, itemId);
-    }
-
-
-    @PutMapping(path = "/checkout/{user_id}")
-    public void checkOut(@PathVariable("user_id") Long userId){
-        appUserService.checkOut(userId);
-    }
+//    @PutMapping(value = "addToCart/{user_id}/{item_id}")
+//    public void addToCart(@PathVariable("user_id") Long userId,
+//                        @PathVariable("item_id") Long itemId){
+//        appUserService.addToCart(userId, itemId);
+//    }
+//
+//
+//    @PutMapping(path = "/checkout/{user_id}")
+//    public void checkOut(@PathVariable("user_id") Long userId){
+//        appUserService.checkOut(userId);
+//    }
 
     @PostMapping(value = "signUpUser")
     public void signUpUser(@RequestBody AppUser user){

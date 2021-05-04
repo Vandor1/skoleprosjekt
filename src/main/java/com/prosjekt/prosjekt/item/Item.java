@@ -1,9 +1,6 @@
 package com.prosjekt.prosjekt.item;
 
-import com.prosjekt.prosjekt.appuser.AppUser;
-
 import javax.persistence.*;
-import java.util.Set;
 
 /**
  * A class representing an item ...
@@ -47,6 +44,7 @@ public class Item {
         this.category = category;
     }
 
+
     public Item(String name,
                 String description,
                 Integer price,
@@ -69,6 +67,18 @@ public class Item {
         this.counter = counter;
     }
 
+
+    public String getSubcategory() {
+        return subcategory;
+    }
+
+    public void setSubcategory(String subcategory) {
+        this.subcategory = subcategory;
+    }
+
+    public void setCounter(Integer counter) {
+        this.counter = counter;
+    }
     public Long getId() {
         return id;
     }

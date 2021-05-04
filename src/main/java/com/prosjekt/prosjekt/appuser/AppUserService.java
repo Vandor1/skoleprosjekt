@@ -1,7 +1,5 @@
 package com.prosjekt.prosjekt.appuser;
 
-import com.prosjekt.prosjekt.item.Item;
-import com.prosjekt.prosjekt.item.ItemRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -19,11 +16,8 @@ import java.util.Optional;
 public class AppUserService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final ItemRepository itemRepository;
     private final static String LOGIN_ERROR = "user name in use";
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-
 
 
     @Override
@@ -48,26 +42,14 @@ public class AppUserService implements UserDetailsService {
     }
 
 
-
-    public void addToCart(Long userId, Long itemId){
-        Optional<AppUser> user = userRepository.findAppUserById(userId);
-        Optional<Item> item = itemRepository.findItemById(itemId);
-        if(user.isPresent() && item.isPresent()) {
-            user.get().addItemToCart(item.get());
-
-            System.out.println(user.get().getCartItems());
-            System.out.println(item.get().getName());
-            userRepository.save(user.get());
-        }
-    }
-
-    public void checkOut(Long userId) {
-        Optional<AppUser> user = userRepository.findAppUserById(userId);
-        if (user.isEmpty()){
-            throw new IllegalStateException("user id not found");
-        }
-
-        user.get().addOrder(user.get().getCartItems());
-        userRepository.save(user.get());
-    }
+//
+//    public void checkOut(Long userId) {
+//        Optional<AppUser> user = userRepository.findAppUserById(userId);
+//        if (user.isEmpty()){
+//            throw new IllegalStateException("user id not found");
+//        }
+//
+//        user.get().addOrder(user.get().getCartItems());
+//        userRepository.save(user.get());
+//    }
 }
