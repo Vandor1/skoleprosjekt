@@ -1,4 +1,4 @@
-package com.prosjekt.prosjekt.registration;
+package com.prosjekt.prosjekt.security.auth.registration;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

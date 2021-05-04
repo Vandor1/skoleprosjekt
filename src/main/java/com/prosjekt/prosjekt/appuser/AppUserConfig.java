@@ -6,67 +6,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppUserConfig {
-//    List<Item> orderItems1;
-//    List<Item> orderItems2;
-//
-//
-//    List<Item> testItems;
-//    Item test = new Item(
-//            "Levi's jeans",
-//            "undertittlel",
-//            1200,
-//            "bottomwear",
-//            "jeans",
-//            "blue",
-//            "M",
-//            "slim fit",
-//            "https://i.imgur.com/PqfGMhn.png",
-//            3);
-//
-//    List<Item> testItems2;
-//    Item test2 = new Item(
-//            "gggggg",
-//            "undertittlel",
-//            1200,
-//            "bottomwear",
-//            "jeans",
-//            "blue",
-//            "M",
-//            "slim fit",
-//            "https://i.imgur.com/PqfGMhn.png",
-//            3);
-
-    public AppUserConfig(){
-//        testItems = new ArrayList<>();
-////        testItems.add(test);
-////        testItems.add(test2);
-//        testItems2 = new ArrayList<>();
-////        testItems2.add(test2);
-////        testItems2.add(test);
-//
-//        orderItems1 = new ArrayList<>();
-//        orderItems2 = new ArrayList<>();
-
-    }
-
-
     @Bean(name = "initUsers")
     CommandLineRunner commandLineRunner(AppUserService appUserService){
         return args -> {
-            AppUser user1 = new AppUser(
-                    "mathias",
-                    "gmail",
-                    "jegErHomo",
-                    AppUserRole.USER);
-
-            AppUser user2 = new AppUser(
-                    "a",
+            AppUser user = new AppUser(
+                    "Jeff",
                     "b",
                     "c",
-                    AppUserRole.USER);
-
-            appUserService.signUpUser(user1);
-            appUserService.signUpUser(user2);
+                    AppUserRole.USER
+            );
+            appUserService.signUpUser(user);
         };
     }
 }

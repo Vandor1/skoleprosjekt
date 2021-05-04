@@ -30,6 +30,7 @@ public class AppUser implements UserDetails {
 
     private Long id;
     private String name;
+    //TODO: Add validation for email etc?
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
