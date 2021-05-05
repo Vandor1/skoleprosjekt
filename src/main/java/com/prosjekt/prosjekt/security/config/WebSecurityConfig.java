@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,32 +41,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedMethods("GET", "POST", "HEAD", "PUT", "DELETE", "OPTIONS");
-            }
+                        .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
+                registry.addMapping("/**").allowedMethods("*");}
         };
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+
+        http.csrf().disable().cors().and()
                 .authorizeRequests()
-                .antMatchers("/api/v1/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/item/**").permitAll()
+                .antMatchers("/api/v1/authenticate/login").permitAll()
+                .antMatchers("/api/v1/registration").permitAll()
                 .anyRequest().authenticated()
         .and().sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS); //Don't manage or create session(no memory of previous actions).
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class); // Add JwtRequestFilter before username password filter is called.
-
-          /* http
-               .csrf().disable()
-                   .authorizeRequests()
-               .antMatchers("api/v1/registration").permitAll()
-               .antMatchers("/api/v1/item/**").hasAnyAuthority("USER", "ADMIN")
-                   .antMatchers("search/**").hasAnyAuthority("USER", "ADMIN")
-               .anyRequest().permitAll()
-                .and()
-               .formLogin().failureUrl("/login-error");
-        .exceptionHandling().accessDeniedPage("/403");*/
     }
 
     @Override
