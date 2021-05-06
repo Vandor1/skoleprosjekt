@@ -1,34 +1,59 @@
 package com.prosjekt.prosjekt.cart;
 
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table
+@NoArgsConstructor
+@AllArgsConstructor
 public class Cart {
-    @EmbeddedId
-    private CartId cartID;
+
+    @SequenceGenerator(
+            name = "cart_sequence",
+            sequenceName = "cart_sequence",
+            allocationSize = 1
+    )
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "cart_sequence"
+    )
+    private Long id;
+    private Long userId;
+    private Long itemId;
     private Integer quantity;
 
-    public Cart(Long userId, Long itemId){
-        this.cartID = new CartId(userId, itemId);
+    public Cart(Long userId, Long itemId) {
+        this.userId = userId;
+        this.itemId = itemId;
         this.quantity = 1;
     }
 
-
-    public CartId getCartID() {
-        return cartID;
+    public Long getId() {
+        return id;
     }
 
-    public void setCartID(CartId cartID) {
-        this.cartID = cartID;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 
     public Integer getQuantity() {
@@ -53,14 +78,4 @@ public class Cart {
             this.quantity++;
         }
     }
-
-    public Long getUserId(){
-        return cartID.getUserId();
-    }
-
-    public Long getItemId(){
-        return cartID.getItemId();
-    }
 }
-
-

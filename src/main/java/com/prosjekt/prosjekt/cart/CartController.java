@@ -17,9 +17,26 @@ public class CartController {
         this.cartService = cartService;
     }
 
+
+    /**
+     * Get all cart items
+     * @return a list of all cart items in the database
+     */
+    //TODO: maybe useless?
     @GetMapping
     public List<Cart> getCart(){
         return cartService.getCartItems();
+    }
+
+    /**
+     * Get a list of a given users cart items.
+     * @param userId to get cart items of.
+     * @return List of cart items by a given user.
+     */
+    @GetMapping(path = "/{user_id}")
+    public List<Cart> getUserCartItems(
+            @PathVariable("user_id") Long userId){
+        return cartService.getUserCartItems(userId);
     }
 
     @PostMapping(path = "/add/{user_id}/{item_id}")
@@ -28,16 +45,14 @@ public class CartController {
         cartService.addToCart(userId, itemId);
     }
 
-    @DeleteMapping(path = "/delete/{user_id}/{item_id}")
-    public void deleteCartItem(@PathVariable("user_id") Long userId,
-                               @PathVariable("item_id") Long itemId){
-        cartService.deleteCartItem(userId, itemId);
+    @DeleteMapping(path = "/delete/{cart_id}")
+    public void deleteCartItem(@PathVariable("cart_id") Long cartId){
+        cartService.deleteCartItem(cartId);
     }
 
-    @PutMapping(path = "/update/{user_id}/{item_id}/{value}")
-    public void updateCartItemQuantity(@PathVariable("user_id") Long userId,
-                                      @PathVariable("item_id") Long itemId,
+    @PutMapping(path = "/update/{cart_id}/{value}")
+    public void updateCartItemQuantity(@PathVariable("cart_id") Long cartId,
                                       @PathVariable("value") Integer value){
-        cartService.updateCartItemQuantity(userId, itemId, value);
+        cartService.updateCartItemQuantity(cartId, value);
     }
 }
