@@ -98,6 +98,13 @@ public class OrderService{
         }
     }
 
+    public void createCart(Long userId){
+        if(getUserCart(userId).isEmpty()){
+            Order order = new Order(userId);
+            orderRepository.save(order);
+        }
+    }
+
     /**
      * Collects the user with userID cart.
      * @param userId the ID of the user who's shopping.

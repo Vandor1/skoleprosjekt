@@ -50,6 +50,10 @@ public class OrderController {
         orderService.addToOrder(userId, itemId);
     }
 
+    @PostMapping("/createCart/{userId}")
+    public void createCart(@PathVariable("userId") Long userId){
+        orderService.createCart(userId);
+    }
     /**
      * Checkout shopping cart.
      * @param userId
