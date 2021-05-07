@@ -15,12 +15,12 @@ import java.util.List;
 @Table(name = "Orders")
 public class Order {
 
+    @Id
     @SequenceGenerator(
             name = "order_sequence",
             sequenceName = "orders_sequence",
             allocationSize = 1
     )
-    @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "order_sequence"
@@ -28,6 +28,7 @@ public class Order {
     private Long id;
     private Long userId;
     private LocalDate date;
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
     // Order_item join table
