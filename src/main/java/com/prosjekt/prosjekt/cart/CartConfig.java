@@ -4,8 +4,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.List;
-
 @Configuration
 public class CartConfig {
 
@@ -20,14 +18,14 @@ public class CartConfig {
 //            cartRepository.saveAll(List.of(cartItem1, cartItem2, cartItem3));
 //        };
 //    }
-    CommandLineRunner commandLineRunner(CartRepository1 cartRepository1){
+    CommandLineRunner commandLineRunner(CartService cartService){
         return args -> {
-            Cart cartItem1 = new Cart(1L,1L);
-            Cart cartItem2 = new Cart(1L, 2L);
-            Cart cartItem3 = new Cart(1L, 3L);
+//            Cart cartItem1 = new Cart(1L,1L);
+//            Cart cartItem2 = new Cart(1L, 2L);
+//            Cart cartItem3 = new Cart(1L, 3L);
 
 
-            cartRepository1.saveAll(List.of(cartItem1, cartItem2, cartItem3));
+//            cartService.addToCart(1L, 2L);
         };
     }
 }
