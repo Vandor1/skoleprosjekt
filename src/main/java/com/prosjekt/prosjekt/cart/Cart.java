@@ -11,17 +11,21 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Cart {
 
-    @SequenceGenerator(
-            name = "cart_sequence",
-            sequenceName = "cart_sequence",
-            allocationSize = 1
-    )
+//    @SequenceGenerator(
+////            name = "cart_sequence",
+////            sequenceName = "cart_sequence",
+////            allocationSize = 1
+////    )
+////    @Id
+////    @GeneratedValue(
+////            strategy = GenerationType.SEQUENCE,
+////            generator = "cart_sequence"
+////    )
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "cart_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    //TODO: assign relation and foreign keys?
     private Long userId;
     private Long itemId;
     private Integer quantity;

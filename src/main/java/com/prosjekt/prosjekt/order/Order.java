@@ -1,7 +1,10 @@
 //package com.prosjekt.prosjekt.order;
 //
+//import com.prosjekt.prosjekt.cart.Cart;
+//
 //import javax.persistence.*;
 //import java.time.LocalDate;
+//import java.util.List;
 //
 //@Entity
 //@Table
@@ -17,7 +20,11 @@
 //            strategy = GenerationType.SEQUENCE,
 //            generator = "order_sequence"
 //    )
+//
 //    private Long id;
+//    @JoinTable(name = "orderItem")
+//    @ManyToMany
+//    private List<Cart> itemId;
 //    private LocalDate date;
 //    private OrderStatus orderStatus;
 //
