@@ -44,7 +44,7 @@ public class ItemService {
     public void deleteItem(Long itemId) {
         boolean exists = itemRepository.existsById(itemId);
        if(!exists){
-           throw new IllegalStateException("Student with id: " + itemId + " does not exist.");
+           throw new IllegalStateException("Item with id: " + itemId + " does not exist.");
        }
        itemRepository.deleteById(itemId);
     }

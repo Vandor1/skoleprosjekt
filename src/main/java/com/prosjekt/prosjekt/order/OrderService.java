@@ -17,6 +17,25 @@ public class OrderService{
     private final OrderRepository orderRepository;
     private final ItemRepository itemRepository;
 
+
+    /**
+     * Delete cart item
+     * @param itemId
+     * @param userId
+     */
+    public void deleteCartItem(Long userId, Long itemId) {
+        Order cartItems = getCartItems(userId);
+        Optional<Item> itemsById = itemRepository.findItemById(itemId);
+
+        if(itemsById.isPresent()){
+            if (!cartItems.getItems().contains(itemsById.get())) {
+                throw new IllegalStateException("Cant find item with id: " + itemId + ".");
+            } else {
+                orderRepository.deleteById(itemId);
+            }
+        }
+    }
+
     /**
      * Collects the current items in cart.
      * @param userId of the user ID.
