@@ -25,13 +25,14 @@ public class OrderService{
      */
     public void deleteCartItem(Long userId, Long itemId) {
         Order cartItems = getCartItems(userId);
-        Optional<Item> itemsById = itemRepository.findItemById(itemId);
+        Optional<Item> itemById = itemRepository.findItemById(itemId);
 
-        if(itemsById.isPresent()){
-            if (!cartItems.getItems().contains(itemsById.get())) {
+        if(itemById.isPresent()){
+            if (!cartItems.getItems().contains(itemById.get())) {
                 throw new IllegalStateException("Cant find item with id: " + itemId + ".");
             } else {
-                orderRepository.deleteById(itemId);
+                cartItems.deleteItemFromOrder(itemById.get());
+                orderRepository.save(cartItems);
             }
         }
     }

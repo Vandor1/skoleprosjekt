@@ -63,7 +63,7 @@ public class OrderController {
         orderService.checkOutOrder(userId);
     }
 
-    @DeleteMapping(path ="/cart/delete/{userId}/{itemId}")
+    @PutMapping(path ="/cart/delete/{userId}/{itemId}")
     public void deleteCartItem(@PathVariable("userId") Long userId, @PathVariable("itemId") Long itemId){
         orderService.deleteCartItem(userId,itemId);
     }

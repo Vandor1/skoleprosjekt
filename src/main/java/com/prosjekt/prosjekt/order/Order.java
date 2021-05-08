@@ -83,6 +83,10 @@ public class Order {
         this.items.add(item);
     }
 
+    public void deleteItemFromOrder(Item item){
+        this.items.removeAll(Collections.singleton(item));
+    }
+
     public int getQuantity(Item item){
         return Collections.frequency(this.items, item);
     }
