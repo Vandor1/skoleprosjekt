@@ -5,6 +5,7 @@ import com.prosjekt.prosjekt.item.ItemRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +58,7 @@ public class OrderService{
         Optional<Order> order = getUserCart(userID);
         order.ifPresent(value -> {
             value.setOrderStatus(OrderStatus.ORDER);
+            value.setDate(LocalDate.now());
             orderRepository.save(order.get());
         });
         //TODO: LOGGER
