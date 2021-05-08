@@ -41,9 +41,10 @@ public class OrderService{
      * @param userId of the user ID.
      * @return orders of the cart.
      */
-    public Order getCartItems(Long userId){
-        Optional<Order> orders = getUserCart(userId);
-        return orders.orElse(null);
+    public Order getCartItems(Long userId) {
+        Optional<Order> order = getUserCart(userId);
+        return order.orElse(null);
+
     }
 
     /**
