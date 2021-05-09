@@ -144,7 +144,7 @@ public class ItemConfig {
                     "feels good",
                     500,
                     "bottomwear",
-                    "Tshirt",
+                    "shorts",
                     "red",
                     "S",
                     "normal fit",
@@ -175,7 +175,51 @@ public class ItemConfig {
                     "https://images.pexels.com/photos/5069176/pexels-photo-5069176.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
             );
 
-            itemRepository.saveAll(List.of(i1, i2, i3, i4, i5, i6,i7,i8,i9,i10,i11,i19,i20));
+            Item i15 = new Item(
+                    "Converse",
+                    "classic converse",
+                    700,
+                    "Shoes",
+                    "Sneakers",
+                    "green",
+                    "M",
+                    "",
+                    "https://cdn.pixabay.com/photo/2013/07/12/18/20/shoes-153310_960_720.png"
+            );
+            Item i12 = new Item(
+                    "FootJoy SuperLites",
+                    "Light golf shoes",
+                    800,
+                    "Shoes",
+                    "golf",
+                    "gray",
+                    "L",
+                    "normal is size",
+                   " https://i.imgur.com/mx5ixSF.jpg");
+            Item i13 = new Item(
+                    "Merrel shoes",
+                    "GORE-TEX",
+                    1300,
+                    "Shoes",
+                    "lifestyle",
+                    "brown",
+                    "L",
+                    "Perfect for hiking",
+                    "https://cdn.pixabay.com/photo/2014/12/31/11/41/shoes-584850_960_720.jpg");
+
+            Item i14 = new Item(
+                    "Football jersey",
+                    "2021 edition",
+                    400,
+                    "Sport",
+                    "Football",
+                    "yellow",
+                    "M",
+                    "Slim fit",
+                    "https://i.imgur.com/Z0YZaCA.png");
+
+            itemRepository.saveAll(List.of(i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i19, i20));
+
         };
     }
 }
