@@ -11,7 +11,7 @@ public class ItemConfig {
     @Bean(name = "initItems")
     CommandLineRunner commandLineRunner(ItemRepository itemRepository){
         return args -> {
-            Item test = new Item(
+            Item i1 = new Item(
                     "Levi's jeans",
                     "undertittlel",
                     1200,
@@ -23,7 +23,7 @@ public class ItemConfig {
                     "https://i.imgur.com/PqfGMhn.png",
                     3
             );
-            Item test2 = new Item(
+            Item i2 = new Item(
                     "Nike ultimate running",
                     "made for running",
                     1700,
@@ -35,7 +35,7 @@ public class ItemConfig {
                     "https://i.imgur.com/PwoTdIy.jpg",
                     5
             );
-            Item test3 = new Item(
+            Item i3 = new Item(
                     "GAP sweater",
                     "Comfy cotton top",
                     600,
@@ -48,7 +48,33 @@ public class ItemConfig {
                     5
             );
 
-            itemRepository.saveAll(List.of(test, test2, test3));
+            Item i4 = new Item(
+                    "GAP sweater",
+                    "Comfy cotton top",
+                    600,
+                    "topwear",
+                    "sweater",
+                    "gray, blue",
+                    "L",
+                    "normal fit",
+                    "https://down.imgspng.com/download/0720/sweater_PNG50.png",
+                    5
+            );
+
+            Item i5 = new Item(
+                    "GAP sweater",
+                    "Comfy cotton top",
+                    600,
+                    "topwear",
+                    "sweater",
+                    "gray, blue",
+                    "L",
+                    "normal fit",
+                    "https://down.imgspng.com/download/0720/sweater_PNG50.png",
+                    5
+            );
+
+            itemRepository.saveAll(List.of(i1, i2, i3, i4, i5));
         };
     }
 }
