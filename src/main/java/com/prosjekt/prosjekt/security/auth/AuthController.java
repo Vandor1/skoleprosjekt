@@ -38,7 +38,8 @@ public class AuthController {
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword()));
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword()));
         } catch (BadCredentialsException e) {
             throw new Exception("Incorrect username or password", e);
         }
@@ -58,9 +59,13 @@ public class AuthController {
     public ResponseEntity<?> authenticateUser(@RequestBody AuthenticationRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
         AppUser appUser = (AppUser) authentication.getPrincipal();
+
         String jwt = jwtUtils.generateToken(appUser);
+
         return ResponseEntity.ok(new AuthenticationResponse(
                 jwt,
                 appUser.getId(),

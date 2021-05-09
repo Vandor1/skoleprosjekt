@@ -2,6 +2,7 @@ package com.prosjekt.prosjekt.security.jwt;
 
 import com.prosjekt.prosjekt.appuser.AppUser;
 import com.prosjekt.prosjekt.appuser.AppUserService;
+import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,6 +45,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                         new UsernamePasswordAuthenticationToken(appUser, null, appUser.getAuthorities());
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            } else {
+                throw new SignatureException("Token is no longer valid.");
             }
         }
         filterChain.doFilter(request, response);
