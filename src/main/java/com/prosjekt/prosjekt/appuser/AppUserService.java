@@ -19,37 +19,24 @@ public class AppUserService implements UserDetailsService {
     private final static String LOGIN_ERROR = "user name in use";
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
     @Override
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(LOGIN_ERROR));
     }
 
-    public String signUpUser(AppUser appUser){
+    public void signUpUser(AppUser appUser){
         boolean userExists = userRepository.findByEmail(appUser.getEmail()).isPresent();
         if(userExists){ throw new IllegalStateException("Email already taken!"); }
 
         String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
         appUser.setPassword(encodedPassword);
 
-        userRepository.save(appUser); //added to database
-        return "works now :D";
+        userRepository.save(appUser);
+             //added to database
     }
 
     public List<AppUser> getUsers() {
         return userRepository.findAll();
     }
-
-
-//
-//    public void checkOut(Long userId) {
-//        Optional<AppUser> user = userRepository.findAppUserById(userId);
-//        if (user.isEmpty()){
-//            throw new IllegalStateException("user id not found");
-//        }
-//
-//        user.get().addOrder(user.get().getCartItems());
-//        userRepository.save(user.get());
-//    }
 }
