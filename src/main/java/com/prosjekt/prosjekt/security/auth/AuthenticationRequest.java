@@ -24,4 +24,7 @@ public class AuthenticationRequest {
         this.password = password;
     }
 
+    public void getJwt(){
+
+    }
 }

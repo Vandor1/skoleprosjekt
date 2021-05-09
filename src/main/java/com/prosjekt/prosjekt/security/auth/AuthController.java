@@ -35,26 +35,6 @@ public class AuthController {
     private JwtUtils jwtUtils;
 
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword()));
-        } catch (BadCredentialsException e) {
-            throw new Exception("Incorrect username or password", e);
-        }
-        final AppUser appUser = (AppUser) appUserService
-                .loadUserByUsername(authenticationRequest.getEmail());
-
-        final String jwt = jwtUtils.generateToken(appUser);
-
-        return ResponseEntity.ok(new AuthenticationResponse(
-                jwt,
-                appUser.getId(),
-                appUser.getEmail(),
-                appUser.getName()));
-    }
-
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody AuthenticationRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -65,6 +45,18 @@ public class AuthController {
         AppUser appUser = (AppUser) authentication.getPrincipal();
 
         String jwt = jwtUtils.generateToken(appUser);
+
+        return ResponseEntity.ok(new AuthenticationResponse(
+                jwt,
+                appUser.getId(),
+                appUser.getEmail(),
+                appUser.getName()
+        ));
+    }
+
+    @PostMapping("/getUser")
+    public ResponseEntity<?> getUser(@RequestBody String jwt){
+        AppUser appUser = (AppUser) this.appUserService.loadUserByUsername(jwtUtils.getEmailFromJwtToken(jwt));
 
         return ResponseEntity.ok(new AuthenticationResponse(
                 jwt,
