@@ -28,7 +28,6 @@ public class Item {
     private String size;
     private String details;
     private String img;
-    private Integer counter = 1;
 
 //    @ManyToMany(mappedBy = )
 //    private Set<AppUser> asdf;
@@ -53,8 +52,7 @@ public class Item {
                 String colors,
                 String size,
                 String details,
-                String img,
-                Integer counter) {
+                String img) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -64,7 +62,6 @@ public class Item {
         this.size = size;
         this.details = details;
         this.img = img;
-        this.counter = counter;
     }
 
 
@@ -76,9 +73,6 @@ public class Item {
         this.subcategory = subcategory;
     }
 
-    public void setCounter(Integer counter) {
-        this.counter = counter;
-    }
     public Long getId() {
         return id;
     }
@@ -151,18 +145,6 @@ public class Item {
         this.img = filePath;
     }
 
-    public void increaseCounter(){
-        this.counter++;
-    }
-
-    public void decreaseCounter(){
-        this.counter--;
-    }
-
-    public int getCounter(){
-        return this.counter;
-    }
-
     @Override
     public String toString() {
         return "Item{" +
@@ -176,7 +158,6 @@ public class Item {
                 ", size='" + size + '\'' +
                 ", details='" + details + '\'' +
                 ", img='" + img + '\'' +
-                ", counter=" + counter +
                 '}';
     }
 }
