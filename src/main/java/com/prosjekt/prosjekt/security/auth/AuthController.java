@@ -35,6 +35,11 @@ public class AuthController {
     private JwtUtils jwtUtils;
 
 
+    /**
+     * Login
+     * @param loginRequest
+     * @return
+     */
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody AuthenticationRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -54,10 +59,16 @@ public class AuthController {
         ));
     }
 
+    /**
+     * If a user has an existing JWT in localStorage, it will be used to automatically log the user back in
+     * to his last session. JWT localStorage handling is done in frontend. JWT will automatically be illegitimate
+     * after a given time from JwtUtils(jwtExpirationMs), requiring the user to log in manually again.
+     * @param jwt token used to log in.
+     * @return the user to log in.
+     */
     @PostMapping("/getUser")
     public ResponseEntity<?> getUser(@RequestBody String jwt){
         AppUser appUser = (AppUser) this.appUserService.loadUserByUsername(jwtUtils.getEmailFromJwtToken(jwt));
-
         return ResponseEntity.ok(new AuthenticationResponse(
                 jwt,
                 appUser.getId(),

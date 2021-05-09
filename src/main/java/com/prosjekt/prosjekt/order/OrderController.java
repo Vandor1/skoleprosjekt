@@ -9,7 +9,6 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping(path = "api/v1/order")
-
 public class OrderController {
 
     private final OrderService orderService;
@@ -61,6 +60,7 @@ public class OrderController {
     @PutMapping(path = "/checkout/{userId}")
     public void checkOutOrder(@PathVariable("userId") Long userId){
         orderService.checkOutOrder(userId);
+        orderService.createCart(userId);
     }
 
     @PutMapping(path ="/cart/delete/{userId}/{itemId}")
