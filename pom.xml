@@ -11,6 +11,7 @@
 	<groupId>com.prosjekt</groupId>
 	<artifactId>prosjekt</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>prosjekt</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
