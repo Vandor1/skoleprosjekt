@@ -15,16 +15,18 @@ public class RegistrationService {
     private final AppUserService appUserService;
     @Autowired
     private final UserRepository userRepository;
-    public void register(RegistrationRequest request) {
-        if(userRepository.existsByEmail(request.getEmail())){
-            throw new IllegalStateException("Email already taken, try logging in instead!");
+    public boolean register(RegistrationRequest request) {
+        boolean success = false;
+        if(!userRepository.existsByEmail(request.getEmail())){
+            appUserService.signUpUser(
+                    new AppUser(
+                            request.getName(),
+                            request.getEmail(),
+                            request.getPassword(),
+                            AppUserRole.USER
+                    ));
+            success = true;
         }
-        appUserService.signUpUser(
-                new AppUser(
-                        request.getName(),
-                        request.getEmail(),
-                        request.getPassword(),
-                        AppUserRole.USER
-                ));
+        return success;
     }
 }
