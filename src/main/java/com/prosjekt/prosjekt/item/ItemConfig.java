@@ -18,7 +18,7 @@ public class ItemConfig {
         return args -> {
             Item i1 = new Item(
                     "Levi's jeans",
-                    "undertittlel",
+                    "Regular pants",
                     1200,
                     "bottomwear",
                     "jeans",
@@ -41,32 +41,6 @@ public class ItemConfig {
 
             );
             Item i3 = new Item(
-                    "GAP sweater",
-                    "Comfy cotton top",
-                    600,
-                    "topwear",
-                    "sweater",
-                    "gray, blue",
-                    "L",
-                    "normal fit",
-                    "https://down.imgspng.com/download/0720/sweater_PNG50.png"
-
-            );
-
-            Item i4 = new Item(
-                    "GAP sweater",
-                    "Comfy cotton top",
-                    600,
-                    "topwear",
-                    "sweater",
-                    "gray, blue",
-                    "L",
-                    "normal fit",
-                    "https://down.imgspng.com/download/0720/sweater_PNG50.png"
-
-            );
-
-            Item i5 = new Item(
                     "GAP sweater",
                     "Comfy cotton top",
                     600,
@@ -218,7 +192,18 @@ public class ItemConfig {
                     "Slim fit",
                     "https://i.imgur.com/Z0YZaCA.png");
 
-            itemRepository.saveAll(List.of(i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i19, i20));
+            Item i16 = new Item(
+                    "Basketball lakers jersey",
+                    "2021 edition",
+                    400,
+                    "Sport",
+                    "basketball",
+                    "black",
+                    "L",
+                    "Loose fit",
+                    "https://cdn.pixabay.com/photo/2020/11/10/18/58/jersey-5730732_960_720.jpg");
+
+            itemRepository.saveAll(List.of(i1, i2, i3, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15,i16, i19, i20));
 
         };
     }

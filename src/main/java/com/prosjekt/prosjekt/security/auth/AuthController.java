@@ -34,7 +34,6 @@ public class AuthController {
     @Autowired
     private JwtUtils jwtUtils;
 
-
     /**
      * Login
      * @param loginRequest
