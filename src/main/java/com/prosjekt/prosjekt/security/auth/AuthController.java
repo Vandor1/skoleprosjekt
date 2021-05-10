@@ -2,6 +2,7 @@ package com.prosjekt.prosjekt.security.auth;
 
 import com.prosjekt.prosjekt.appuser.AppUser;
 import com.prosjekt.prosjekt.appuser.AppUserService;
+import com.prosjekt.prosjekt.order.OrderService;
 import com.prosjekt.prosjekt.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,8 @@ public class AuthController {
     @Autowired
     private JwtUtils jwtUtils;
 
+    @Autowired
+    private OrderService orderService;
     /**
      * Login
      * @param loginRequest
@@ -49,6 +52,8 @@ public class AuthController {
         AppUser appUser = (AppUser) authentication.getPrincipal();
 
         String jwt = jwtUtils.generateToken(appUser);
+
+        orderService.createCart(appUser.getId()); // create cart for user if he does not have one on login.
 
         return ResponseEntity.ok(new AuthenticationResponse(
                 jwt,
