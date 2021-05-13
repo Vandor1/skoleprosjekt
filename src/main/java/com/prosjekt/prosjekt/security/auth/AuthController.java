@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * Class AuthController,
+ *
+ * Code inspired from:
  * https://github.com/bezkoder/spring-boot-spring-security-jwt-authentication/blob/master/src/main/java/com/bezkoder/springjwt/controllers/AuthController.java
  * https://bezkoder.com/spring-boot-jwt-authentication/#Define_payloads_for_Spring_RestController
  * https://bezkoder.com/spring-boot-security-postgresql-jwt-authentication/
@@ -37,6 +40,7 @@ public class AuthController {
 
     @Autowired
     private OrderService orderService;
+
     /**
      * Login
      * @param loginRequest
