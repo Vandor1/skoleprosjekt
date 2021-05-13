@@ -63,12 +63,12 @@ public class ItemService {
      * @param item to be added.
      */
     public void addNewItem(Item item) {
-        Optional<Item> itemByName = itemRepository.findItemByName(item.getName());
-        if (itemByName.isPresent()) {
+        Optional<Item> itemToAdd = itemRepository.findItemById(item.getId());
+        if (itemToAdd.isPresent()) {
             logger.warn("Item: " + item + " already exists.");
-            throw new IllegalStateException("Item already exists");
+        } else {
+            itemRepository.save(item);
         }
-        itemRepository.save(item);
     }
 
     /**
@@ -78,8 +78,7 @@ public class ItemService {
      */
     public void deleteItem(Long itemId) {
         try {
-            itemRepository.existsById(itemId);
-            logger.info("Item to be deleted exists. Trying to delete..");
+            Item item = itemRepository.findItemById(itemId).get();
             itemRepository.deleteById(itemId);
             logger.info("Successfully deleted item " + itemId + ".");
         } catch (Exception e) {
