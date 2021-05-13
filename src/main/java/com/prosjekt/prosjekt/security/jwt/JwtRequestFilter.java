@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Request filter extending OncePerRequestFilter, is used for authorizing users once per request made.
+ */
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 

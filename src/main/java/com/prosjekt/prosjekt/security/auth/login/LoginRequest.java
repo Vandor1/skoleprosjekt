@@ -1,10 +1,13 @@
-package com.prosjekt.prosjekt.security.auth;
+package com.prosjekt.prosjekt.security.auth.login;
 
-public class AuthenticationRequest {
+/**
+ * LOGIN REQUEST CLASS, DEFINES WHAT A LOGIN RESPONSE IS MEANT TO LOOK LIKE AND MUST CONTAIN.
+ */
+public class LoginRequest {
     private String email;
     private String password;
 
-    public AuthenticationRequest(String email, String password) {
+    public LoginRequest(String email, String password) {
         this.email = email;
         this.password = password;
     }

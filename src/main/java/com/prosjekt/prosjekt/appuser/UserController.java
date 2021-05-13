@@ -5,6 +5,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * User Controller class - responsible for the requests which can be made to App Users.
+ * These include; Sign up user and get users. Login and register functionality is its own controller, as it works closely
+ * with spring security and needs special handling.
+ */
 @RestController
 @CrossOrigin
 @RequestMapping(path = "api/v1/user")
@@ -16,25 +21,21 @@ public class UserController {
         this.appUserService = appUserService;
     }
 
-//    @PutMapping(value = "addToCart/{user_id}/{item_id}")
-//    public void addToCart(@PathVariable("user_id") Long userId,
-//                        @PathVariable("item_id") Long itemId){
-//        appUserService.addToCart(userId, itemId);
-//    }
-//
-//
-//    @PutMapping(path = "/checkout/{user_id}")
-//    public void checkOut(@PathVariable("user_id") Long userId){
-//        appUserService.checkOut(userId);
-//    }
-
+    /**
+     * Sign up user request.
+     * @param user to signup.
+     */
     @PostMapping(value = "signUpUser")
     public void signUpUser(@RequestBody AppUser user){
         appUserService.signUpUser(user);
     }
 
+    /**
+     * Get all AppUsers request. {NOT USED}
+     * @return list of AppUsers.
+     */
     @GetMapping
-    public List<AppUser> getItems(){
+    public List<AppUser> getUsers(){
         return appUserService.getUsers();
     }
 

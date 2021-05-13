@@ -21,6 +21,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
+ * CLASS WebSecurityConfig extending WebSecurityConfigurerAdapter, which is the standard spring security class for
+ * implementing security restrictions on certain requests.
+ *
  * Taken inspiration from https://bezkoder.com/spring-boot-security-postgresql-jwt-authentication/
  */
 @Configuration
@@ -35,6 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private final JwtRequestFilter jwtRequestFilter;
 
+    /**
+     * Used to disable cors for testing in web browser. Is <b>not</b> needed once we setup nqinx as a webproxy.
+     */
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
@@ -46,6 +52,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+    /**
+     * Configurer for authorized requests. Get all items, login and register are permitted by all users. Only authorized(logged in)
+     * users are authorized to request other things, such as orderList.
+     * @param http configuration
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
@@ -63,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth){
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 

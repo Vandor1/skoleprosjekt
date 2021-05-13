@@ -8,17 +8,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
- * Class AppUserService - asdadasd
+ * Class AppUserService - AppUser's service component(class) containing the logic handling behind the different requests to be made in the controller.
  */
 @Service
 @AllArgsConstructor
-@RequestMapping
 public class AppUserService implements UserDetailsService {
 
     private static final Logger logger = LoggerFactory.getLogger(AppUserService.class);
@@ -31,7 +29,7 @@ public class AppUserService implements UserDetailsService {
      * Get 'user details' of user with provided email.
      * @param email of users details queried.
      * @return the user details of user with email @email.
-     * @throws UsernameNotFoundException
+     * @throws NoSuchElementException if no matching email exists.
      */
     @Override
     public UserDetails loadUserByUsername(String email) throws NoSuchElementException {
@@ -49,18 +47,19 @@ public class AppUserService implements UserDetailsService {
     /**
      * If the AppUser provided does not exist in the repository already(checked via email),
      * we encode the AppUsers password and save it to the database.
+     *
      * @param appUser AppUser object with User details of user to be signed up.
      */
-    public void signUpUser(AppUser appUser){
+    public void signUpUser(AppUser appUser) {
         boolean userExists = userRepository.findByEmail(appUser.getEmail()).isPresent();
-        if(userExists){
-            throw new IllegalStateException("Email already taken!");
+        if (userExists) {
+            logger.warn("Email: " + appUser.getEmail() + " already in use.");
+            throw new IllegalStateException("Email already exists.");
         }
         String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
         appUser.setPassword(encodedPassword);
-
         userRepository.save(appUser);
-             //added to database
+        //added to database
     }
 
     /**
