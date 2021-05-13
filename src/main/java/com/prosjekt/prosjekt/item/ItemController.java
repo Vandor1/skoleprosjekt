@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Item controller - Manages changes to the Item entity table
+ */
 @CrossOrigin
 @RestController
 @RequestMapping(path="api/v1/item")
