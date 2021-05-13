@@ -1,5 +1,7 @@
 package com.prosjekt.prosjekt.item;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
+    private Logger logger = LoggerFactory.getLogger(ItemService.class);
+
     @Autowired
     public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
@@ -27,8 +31,10 @@ public class ItemService {
     public Item getItem(Long id){
         Optional<Item> foundItem = itemRepository.findItemById(id);
         if(foundItem.isEmpty()){
-            throw new IllegalStateException("Item already exists");
+            logger.error("Item does not exist.");
+            throw new IllegalStateException("Item does not exists");
         }
+        logger.info("Item obtained successfully.");
         return foundItem.get();
     }
 
