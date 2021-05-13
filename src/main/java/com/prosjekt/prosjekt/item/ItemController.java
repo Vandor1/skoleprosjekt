@@ -18,7 +18,7 @@ public class ItemController {
     }
 
     /**
-     * Returning a List, returns a JSON element.
+     * Get all items in the database
      * @return
      */
     @GetMapping
@@ -26,21 +26,39 @@ public class ItemController {
         return itemService.getItems();
     }
 
+    /**
+     * Find an item by its ID
+     * @param id Id of the item to find
+     * @return
+     */
     @GetMapping(path="{itemId}")
     public Item getItem(@PathVariable("itemId") Long id){
         return itemService.getItem(id);
     }
 
+    /**
+     * Add a new item to the database
+     * @param item
+     */
     @PostMapping
     public void registerNewItem(@RequestBody Item item){
         itemService.addNewItem(item);
     }
 
+    /**
+     * Delte an item from the database
+     * @param itemId
+     */
     @DeleteMapping(path = "{itemId}")
     public void deleteItem(@PathVariable("itemId") Long itemId){
         itemService.deleteItem(itemId);
     }
 
+    /**
+     * Update the price of a given item
+     * @param itemId
+     * @param price
+     */
     @PutMapping(path="{itemId}")
     public void updateItem(
             @PathVariable("itemId") Long itemId,

@@ -82,7 +82,7 @@ public class ItemConfig {
                     "feels good",
                     500,
                     "topwear",
-                    "Cardigans",
+                    "cardigans",
                     "Brown",
                     "M",
                     "Tight fit",
