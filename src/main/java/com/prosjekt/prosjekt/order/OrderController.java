@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Order controller - Manages CRUD operations for the Order entity table
+ */
 @CrossOrigin
 @RestController
 @RequestMapping(path = "api/v1/order")
