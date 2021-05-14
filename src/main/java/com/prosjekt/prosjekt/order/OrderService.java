@@ -58,8 +58,11 @@ public class OrderService {
      * @return the cart of the user
      */
     public Order getCartItems(Long userId) throws NoSuchElementException {
-        try {
+        Optional<Order> order = getUserCart(userId);
+        return order.orElse(null);
+        /*try {
             Order cart = getUserCart(userId).get();
+
             if(cart.getItems().isEmpty()){
                 throw new Exception("The shopping cart is empty");
             }
@@ -69,8 +72,7 @@ public class OrderService {
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             return null;
-        }
-
+        }*/
     }
 
     /**
