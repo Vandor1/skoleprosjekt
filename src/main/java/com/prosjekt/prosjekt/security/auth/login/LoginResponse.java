@@ -1,12 +1,15 @@
-package com.prosjekt.prosjekt.security.auth;
+package com.prosjekt.prosjekt.security.auth.login;
 
-public class AuthenticationResponse {
+/**
+ * LOGIN RESPONSE CLASS, DEFINES WHAT A LOGIN RESPONSE IS MEANT TO LOOK LIKE AND MUST CONTAIN.
+ */
+public class LoginResponse {
     private final String jwt;
     private final Long id;
     private final String email;
     private final String name;
 
-    public AuthenticationResponse(String jwt, Long id, String email, String name) {
+    public LoginResponse(String jwt, Long id, String email, String name) {
         this.jwt = jwt;
         this.id = id;
         this.email = email;

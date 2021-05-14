@@ -12,8 +12,7 @@ public class AppUserConfig {
 
     /**
      * CommandLineRunner is ran on application start.
-     * @param appUserService
-     * @return
+     * @param appUserService used for signing up the dummy data on launch.
      */
     @Bean(name = "initUsers")
     CommandLineRunner commandLineRunner(AppUserService appUserService){
