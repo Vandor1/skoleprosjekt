@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,9 +33,7 @@ public class AppUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws NoSuchElementException {
         try {
-            AppUser user = userRepository.findByEmail(email).get();
-            logger.info("Successfully found user: " + user + "with email: " + email);
-            return user;
+            return userRepository.findByEmail(email).get();
         } catch (NoSuchElementException e){
             logger.warn("Did not find user with email: " + email);
             logger.warn(e.getMessage(), e);

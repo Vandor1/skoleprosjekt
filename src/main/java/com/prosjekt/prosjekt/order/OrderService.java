@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
@@ -57,22 +56,9 @@ public class OrderService {
      * @param userId of the user ID.
      * @return the cart of the user
      */
-    public Order getCartItems(Long userId) throws NoSuchElementException {
+    public Order getCartItems(Long userId) {
         Optional<Order> order = getUserCart(userId);
         return order.orElse(null);
-        /*try {
-            Order cart = getUserCart(userId).get();
-
-            if(cart.getItems().isEmpty()){
-                throw new Exception("The shopping cart is empty");
-            }
-            logger.info("Found the following items in user " + userId + "'s cart: "
-                    + cart.getItems().toString());
-            return cart;
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            return null;
-        }*/
     }
 
     /**
